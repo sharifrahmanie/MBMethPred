@@ -23,7 +23,6 @@ NewData <- cbind(rownames(NewData), NewData)
 colnames(NewData)[1] <- "ID"
 write.csv(NewData, "NewData.csv", quote = FALSE, row.names = FALSE)
 methyl <- ReadMethylFile(File = "NewData.csv")
-file.remove("NewData.csv")
 ```
 
 This function has only one argument, the File. While the first column is CpG methylation probs, starting with cg and followed by a number, other columns are samples with methylation values. All columns should be named.
@@ -59,10 +58,10 @@ colnames(data)[1] <- "ID"
 TSNEPlot(File = data, NCluster = 4)
 ```
 
-An R window will appear with a 3D projection of the t-SNE result. The plot object can be saved with the next line of code (uncomment).
+An R window will appear with a 3D projection of the t-SNE result. The plot object can be saved with the next line of code.
 
 ```{r}
-# rgl.snapshot('tsne3d.png', fmt = 'png')
+rgl.snapshot('tsne3d.png', fmt = 'png')
 ```
 
 
@@ -78,7 +77,6 @@ Data2 <- cbind(rownames(Data2), Data2)
 colnames(Data2)[1] <- "ID"
 write.csv(Data2, "Data2.csv", row.names = FALSE)
 Data2 <- ReadSNFData(File = "Data2.csv")
-file.remove("Data2.csv")
 ```
 
 
@@ -291,7 +289,7 @@ This function has the following arguments:
 
 ## Artificial neural network model
 
-The `NeuralNetworkModel` is a function to train an artificial neural network model to classify medulloblastoma subgroups using the DNA methylation dataset. Please uncomment the following lines and run the function. If it is the first time you run this function, set the InstallTensorFlow parameter to TRUE. It will automatically install the Python and TensorFlow library (version 2.10-cpu) in a virtual environment. Then set the parameter to FALSE. 
+The `NeuralNetworkModel` is a function to train an artificial neural network model to classify medulloblastoma subgroups using the DNA methylation dataset. If it is the first time you run this function, set the InstallTensorFlow parameter to TRUE. It will automatically install the Python and TensorFlow library (version 2.10-cpu) in a virtual environment. Then set the parameter to FALSE. 
 
 ### Usage
 
