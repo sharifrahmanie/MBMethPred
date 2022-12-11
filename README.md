@@ -34,7 +34,6 @@ The `BoxPlot` function draws a box plot out of the DNA methylation dataset or ot
 ### Usage
 
 ```{r}
-
 data <- Data2[1:20,]
 data <- cbind(rownames(data), data)
 colnames(data)[1] <- "ID"
