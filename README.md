@@ -128,7 +128,7 @@ colnames(NewData)[1] <- "ID"
 
 svm <- SupportVectorMachineModel(SplitRatio = 0.8, 
                                  CV = 10, 
-                                 NCores = 1, 
+                                 NCores = 4, 
                                  NewData = NewData)
 ModelMetrics(Model = svm)
 NewDataPredictionResult(Model = svm)
@@ -157,7 +157,7 @@ colnames(NewData)[1] <- "ID"
 knn <- KNearestNeighborModel(SplitRatio = 0.8, 
                              CV = 10, 
                              K = 3, 
-                             NCores = 1, 
+                             NCores = 4, 
                              NewData = NewData)
 ModelMetrics(Model = knn)
 NewDataPredictionResult(Model = knn)
@@ -186,7 +186,7 @@ colnames(NewData)[1] <- "ID"
 rf <- RandomForestModel(SplitRatio = 0.8, 
                         CV = 10, 
                         NTree = 100, 
-                        NCores = 1, 
+                        NCores = 4, 
                         NewData = NewData)
 ModelMetrics(Model = rf)
 NewDataPredictionResult(Model = rf)
@@ -216,7 +216,7 @@ colnames(NewData)[1] <- "ID"
 
 xgboost <- XGBoostModel(SplitRatio = 0.8, 
                         CV = 10, 
-                        NCores = 1, 
+                        NCores = 4, 
                         NewData = NewData)
 ModelMetrics(Model = xgboost)
 NewDataPredictionResult(Model = xgboost)
@@ -244,7 +244,7 @@ colnames(NewData)[1] <- "ID"
 
 lda <- LinearDiscriminantAnalysisModel(SplitRatio = 0.8, 
                                        CV = 10, 
-                                       NCores = 1, 
+                                       NCores = 4, 
                                        NewData = NewData)
 ModelMetrics(Model = lda)
 NewDataPredictionResult(Model = lda)
@@ -272,7 +272,7 @@ colnames(NewData)[1] <- "ID"
 nb <- NaiveBayesModel(SplitRatio = 0.8, 
                       CV = 10, 
                       Threshold = 0.8, 
-                      NCores = 1, 
+                      NCores = 4, 
                       NewData = NewData)
 ModelMetrics(Model = nb)
 NewDataPredictionResult(Model = nb)
