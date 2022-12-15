@@ -3,8 +3,14 @@ Medulloblastoma Subgroups Prediction from Methylation Data using AI
 
 ## Install MBMethPred package
 ```{r}
+install.packages("MBMethPred")
+```
+or 
+
+```{r}
 remotes::install_github("sharifrahmanie/MBMethPred")
 ```
+
 ```{r}
 require(MBMethPred)
 ```
