@@ -11,6 +11,8 @@ or
 remotes::install_github("sharifrahmanie/MBMethPred")
 ```
 
+Calling the package
+
 ```{r}
 require(MBMethPred)
 ```
