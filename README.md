@@ -1,25 +1,31 @@
-# MBMethPred
-Medulloblastoma Subgroups Prediction from Methylation Data using AI 
+---
+title: "MBMethPred introduction"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteEngine{knitr::knitr}
+  %\VignetteIndexEntry{MBMethPred introduction}
+  %\VignetteEncoding{UTF-8}{inputenc}
+---
 
-## Install MBMethPred package
-```{r}
-install.packages("MBMethPred")
+```{r, include = FALSE}
+
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>",
+  echo = TRUE,
+	fig.width = 6,
+	message = FALSE,
+	warning = FALSE
+)
 ```
-Or 
 
-```{r}
-remotes::install_github("sharifrahmanie/MBMethPred")
-```
-
-Calling the package
-
-```{r}
+```{r setup, include = FALSE}
 require(MBMethPred)
 ```
 
 ## Input file for prediction
 
-The `ReadMethylFile` is a function for reading DNA methylation files and use them as new data for prediction by every model. The input for this function should be either CSV or TSV file format.
+The `ReadMethylFile` is a function for reading DNA methylation beta values files and use them as new data for prediction by every model. The input for this function should be either CSV or TSV file format. Please uncomment the following lines and run the function.
  
 
 ### Usage
@@ -33,15 +39,16 @@ write.csv(NewData, "NewData.csv", quote = FALSE, row.names = FALSE)
 methyl <- ReadMethylFile(File = "NewData.csv")
 ```
 
-This function has only one argument, the File. While the first column is CpG methylation probs, starting with cg and followed by a number, other columns are samples with methylation values. All columns should be named.
+This function has only one argument, the File. The first column of the File is the CpG methylation probe that starts with cg characters and is followed by a number (e.g., cg100091). Other columns are samples with methylation beta values. All columns in the data frame should have a name.
 
 ## Box plot
 
-The `BoxPlot` function draws a box plot out of the DNA methylation dataset or other data frames.
+The `BoxPlot` function draws a box plot out of DNA methylation beta values or other data frames.
 
 ### Usage
 
-```{r}
+```{r fig.width= 8, fig.height=5}
+
 data <- Data2[1:20,]
 data <- cbind(rownames(data), data)
 colnames(data)[1] <- "ID"
@@ -65,21 +72,21 @@ colnames(data)[1] <- "ID"
 TSNEPlot(File = data, NCluster = 4)
 ```
 
-An R window will appear with a 3D projection of the t-SNE result. The plot object can be saved with the next line of code.
+An R window will appear with a 3D projection of the t-SNE result. The plot object can be saved with the next line of code (uncomment).
 
 ```{r}
-rgl.snapshot('tsne3d.png', fmt = 'png')
+ rgl.snapshot('tsne3d.png', fmt = 'png')
 ```
 
 
 ## Input file for similarity network fusion (SNF)
 
-Using `ReadSNFData` function, one can read files (any matrices with CSV or TSV format) and feed them into the similarity network fusion (SNF) function (from the SNFtools package).
+Using `ReadSNFData` function, one can read files (any matrices with CSV or TSV format) and feed them into the similarity network fusion (SNF) function (from the SNFtools package). Please uncomment the following lines and run the function.
 
 ### Usage
 
 ```{r}
-data(Data2) # Gene expression 
+data(Data2) # Gene expression
 Data2 <- cbind(rownames(Data2), Data2)
 colnames(Data2)[1] <- "ID"
 write.csv(Data2, "Data2.csv", row.names = FALSE)
@@ -109,7 +116,7 @@ snf
 
 This function has several arguments as follow:
 
-* `Files`   A list of data frames created using the ReadSNFData function or matrices.
+* `Files`   A list of data frames created using the ReadSNFData function.
 * `NNeighbors`    The number of nearest neighbors.
 * `Sigma`     The variance for local model.
 * `NClusters`   The number of clusters.
@@ -119,7 +126,7 @@ This function has several arguments as follow:
 
 ## Support vector machine model
 
-The `SupportVectorMachineModel` is a function to train a support vector machine model to classify medulloblastoma subgroups using the DNA methylation dataset (Illumina Infinium HumanMethylation450). Prediction is followed by training if new data is provided.
+The `SupportVectorMachineModel` is a function to train a support vector machine model to classify medulloblastoma subgroups using DNA methylation beta values (Illumina Infinium HumanMethylation450). Prediction is followed by training if new data is provided.
 
 Model metrics, including accuracy, precision, sensitivity F1-Score, specificity, and AUC_average can be calculated for the test dataset using the `ModelMetrics` function, which calculates the average of the above parameters from the result of the `ConfusionMatrix` function. 
 
@@ -136,7 +143,7 @@ colnames(NewData)[1] <- "ID"
 
 svm <- SupportVectorMachineModel(SplitRatio = 0.8, 
                                  CV = 10, 
-                                 NCores = 4, 
+                                 NCores = 1, 
                                  NewData = NewData)
 ModelMetrics(Model = svm)
 NewDataPredictionResult(Model = svm)
@@ -147,11 +154,11 @@ This function has the following arguments:
 * `SplitRatio`    Train and test split ratio. A value greater or equal to zero and less than one.
 * `CV`    The number of folds for cross-validation. It should be greater than one.
 * `NCores`    The number of cores for parallel computing.
-*  `NewData`    A methylation data for prediction. 
+*  `NewData`    A methylation beta values input from the ReadMethylFile function. 
 
 
 ## K nearest neighbor model
-The `KNearestNeighborModel` is a function to train a K nearest neighbor model to classify medulloblastoma subgroups using the DNA methylation dataset.
+The `KNearestNeighborModel` is a function to train a K nearest neighbor model to classify medulloblastoma subgroups using DNA methylation beta values.
 
 ### Usage 
 
@@ -165,7 +172,7 @@ colnames(NewData)[1] <- "ID"
 knn <- KNearestNeighborModel(SplitRatio = 0.8, 
                              CV = 10, 
                              K = 3, 
-                             NCores = 4, 
+                             NCores = 1, 
                              NewData = NewData)
 ModelMetrics(Model = knn)
 NewDataPredictionResult(Model = knn)
@@ -177,10 +184,10 @@ This function has the following arguments:
 * `CV`    The number of folds for cross-validation. It should be greater than one.
 * `K`   The number of nearest neighbors.
 * `NCores`    The number of cores for parallel computing.
-*  `NewData`    A methylation data for prediction. 
+*  `NewData`    A methylation beta values input from the ReadMethylFile function.
 
 ## Random forest model
-The `RandomForestModel` is a function to train a random forest model to classify medulloblastoma subgroups using the DNA methylation dataset.
+The `RandomForestModel` is a function to train a random forest model to classify medulloblastoma subgroups using DNA methylation beta values.
 
 ### Usage
 
@@ -194,7 +201,7 @@ colnames(NewData)[1] <- "ID"
 rf <- RandomForestModel(SplitRatio = 0.8, 
                         CV = 10, 
                         NTree = 100, 
-                        NCores = 4, 
+                        NCores = 1, 
                         NewData = NewData)
 ModelMetrics(Model = rf)
 NewDataPredictionResult(Model = rf)
@@ -208,10 +215,10 @@ This function has the following arguments:
 * `CV`    The number of folds for cross-validation. It should be greater than one.
 * `NTree`   The number of trees to be grown.
 * `NCores`    The number of cores for parallel computing.
-*  `NewData`  A methylation data for prediction.  
+*  `NewData`  A methylation beta values input from the ReadMethylFile function.  
 
 ## XGBoost model
-The `XGBoostModel` is a A function to train an XGBoost model to classify medulloblastoma subgroups using the DNA methylation dataset.
+The `XGBoostModel` is a A function to train an XGBoost model to classify medulloblastoma subgroups using DNA methylation beta values.
 
 ### Usage
 
@@ -224,7 +231,7 @@ colnames(NewData)[1] <- "ID"
 
 xgboost <- XGBoostModel(SplitRatio = 0.8, 
                         CV = 10, 
-                        NCores = 4, 
+                        NCores = 1, 
                         NewData = NewData)
 ModelMetrics(Model = xgboost)
 NewDataPredictionResult(Model = xgboost)
@@ -235,11 +242,11 @@ This function has the following arguments:
 * `SplitRatio`    Train and test split ratio. A value greater or equal to zero and less than one.
 * `CV`    The number of folds for cross-validation. It should be greater than one.
 * `NCores`    The number of cores for parallel computing.
-*  `NewData`  A methylation data for prediction.  
+*  `NewData`  A methylation beta values input from the ReadMethylFile function.  
 
 
 ## Linear discriminant analysis model
-The `LinearDiscriminantAnalysisModel` is a function to train a linear discriminant analysis model to classify medulloblastoma subgroups using the DNA methylation dataset.
+The `LinearDiscriminantAnalysisModel` is a function to train a linear discriminant analysis model to classify medulloblastoma subgroups using DNA methylation beta values.
 
 ### Usage
 
@@ -252,7 +259,7 @@ colnames(NewData)[1] <- "ID"
 
 lda <- LinearDiscriminantAnalysisModel(SplitRatio = 0.8, 
                                        CV = 10, 
-                                       NCores = 4, 
+                                       NCores = 1, 
                                        NewData = NewData)
 ModelMetrics(Model = lda)
 NewDataPredictionResult(Model = lda)
@@ -263,10 +270,10 @@ This function has the following arguments:
 * `SplitRatio`    Train and test split ratio. A value greater or equal to zero and less than one.
 * `CV`    The number of folds for cross-validation. It should be greater than one.
 * `NCores`    The number of cores for parallel computing.
-*  `NewData`  A methylation data for prediction.  
+*  `NewData`  A methylation beta values input from the ReadMethylFile function.  
 
 ## Naive bayes model
-The `NaiveBayesModel` is a function to train a Naive Bayes model to classify medulloblastoma subgroups using the DNA methylation dataset.
+The `NaiveBayesModel` is a function to train a Naive Bayes model to classify medulloblastoma subgroups using DNA methylation beta values.
 
 ### Usage
 
@@ -280,7 +287,7 @@ colnames(NewData)[1] <- "ID"
 nb <- NaiveBayesModel(SplitRatio = 0.8, 
                       CV = 10, 
                       Threshold = 0.8, 
-                      NCores = 4, 
+                      NCores = 1, 
                       NewData = NewData)
 ModelMetrics(Model = nb)
 NewDataPredictionResult(Model = nb)
@@ -292,11 +299,11 @@ This function has the following arguments:
 * `CV`    The number of folds for cross-validation. It should be greater than one.
 * `Threshold`   The threshold for deciding class probability. A value greater or equal to zero and less than one.
 * `NCores`    The number of cores for parallel computing.
-*  `NewData`  A methylation data for prediction.  
+*  `NewData`  A methylation beta values input from the ReadMethylFile function.  
 
 ## Artificial neural network model
 
-The `NeuralNetworkModel` is a function to train an artificial neural network model to classify medulloblastoma subgroups using the DNA methylation dataset. If it is the first time you run this function, set the InstallTensorFlow parameter to TRUE. It will automatically install the Python and TensorFlow library (version 2.10-cpu) in a virtual environment. Then set the parameter to FALSE. 
+The `NeuralNetworkModel` is a function to train an artificial neural network model to classify medulloblastoma subgroups using DNA methylation beta values. Please uncomment the following lines and run the function. If it is the first time you run this function, set the InstallTensorFlow parameter to TRUE. It will automatically install the Python and TensorFlow library (version 2.10-cpu) in a virtual environment then set the parameter to FALSE. 
 
 ### Usage
 
@@ -315,5 +322,5 @@ NewDataPredictionResult(Model = ann)
 This function has the following arguments:
 
 * `Epochs`    The number of epochs.
-* `NewData`   A methylation data from ReadMethylFile function.
+* `NewData`   A methylation beta values input from the ReadMethylFile function.
 * `InstallTensorFlow`   Logical. Running this function for the first time, you need to install TensorFlow library (V 2.10-cpu). Default is TRUE.
