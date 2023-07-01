@@ -15,7 +15,7 @@ require(MBMethPred)
 
 ## Input file for prediction
 
-The `ReadMethylFile` is a function for reading DNA methylation beta values files and use them as new data for prediction by every model. The input for this function should be either CSV or TSV file format. Please uncomment the following lines and run the function.
+The `ReadMethylFile` is a function for reading DNA methylation beta values files and use them as new data for prediction by every model. The input for this function should be either CSV or TSV file format.
  
 
 ### Usage
@@ -62,7 +62,7 @@ colnames(data)[1] <- "ID"
 TSNEPlot(File = data, NCluster = 4)
 ```
 
-An R window will appear with a 3D projection of the t-SNE result. The plot object can be saved with the next line of code (uncomment).
+An R window will appear with a 3D projection of the t-SNE result. The plot object can be saved with the next line of code.
 
 ```{r}
  rgl.snapshot('tsne3d.png', fmt = 'png')
@@ -71,7 +71,7 @@ An R window will appear with a 3D projection of the t-SNE result. The plot objec
 
 ## Input file for similarity network fusion (SNF)
 
-Using `ReadSNFData` function, one can read files (any matrices with CSV or TSV format) and feed them into the similarity network fusion (SNF) function (from the SNFtools package). Please uncomment the following lines and run the function.
+Using `ReadSNFData` function, one can read files (any matrices with CSV or TSV format) and feed them into the similarity network fusion (SNF) function (from the SNFtools package).
 
 ### Usage
 
