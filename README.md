@@ -1,6 +1,14 @@
+# MBMethPred: Medulloblastoma Subgroups Prediction
+Utilizing a combination of machine learning models (Random Forest, Naive Bayes, K-Nearest Neighbor, Support Vector Machines, Extreme Gradient Boosting, and Linear Discriminant Analysis) and a deep Artificial Neural Network model, 'MBMethPred' can predict medulloblastoma subgroups, including wingless (WNT), sonic hedgehog (SHH), Group 3, and Group 4 from methylation data.
 
 # MBMethPred introduction
 
+## Installation
+```{r}
+install.packages("MBMethPred")
+remotes::install_github("sharifrahmanie/MBMethPred")
+```
+## Loading MBMethPred
 ```{r}
 require(MBMethPred)
 ```
