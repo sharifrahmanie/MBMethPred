@@ -1,25 +1,7 @@
----
-title: "MBMethPred introduction"
-output: rmarkdown::html_vignette
-vignette: >
-  %\VignetteEngine{knitr::knitr}
-  %\VignetteIndexEntry{MBMethPred introduction}
-  %\VignetteEncoding{UTF-8}{inputenc}
----
 
-```{r, include = FALSE}
+# MBMethPred introduction
 
-knitr::opts_chunk$set(
-  collapse = TRUE,
-  comment = "#>",
-  echo = TRUE,
-	fig.width = 6,
-	message = FALSE,
-	warning = FALSE
-)
-```
-
-```{r setup, include = FALSE}
+```{r}
 require(MBMethPred)
 ```
 
