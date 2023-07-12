@@ -6,7 +6,7 @@ MBMethPred is a user-friendly package developed for the accurate prediction of m
 ```r{}
 install.packages("MBMetPred")
 or
- remotes::install_github("sharifrahmanie/MBMetPred")
+remotes::install_github("sharifrahmanie/MBMetPred")
 ```
 
 ```{r setup, include = FALSE}
