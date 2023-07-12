@@ -1,12 +1,14 @@
 # MBMethPred
 ``` r{}
-MBMethPred introduction
+# MBMethPred introduction
 MBMethPred is a user-friendly package developed for the accurate prediction of medulloblastoma subgroups using DNA methylation beta values. It incorporates seven machine learning models, including Random Forest, K-Nearest Neighbors, Support Vector Machine, Linear Discriminant Analysis, Extreme Gradient Boosting, Naive Bayes, and a neural network model specifically designed for the complexities of medulloblastoma data. The package provides streamlined workflows for data preprocessing, feature selection, model training, cross-validation, and prediction. This vignette offers detailed explanations, examples, and resulting outputs for each functionality. The MBMethPred package was tested on an Ubuntu machine equipped with an Intel Core i5-6200U processor and 16GB RAM.
 
-Input file for prediction
+## Input file for prediction
 The ReadMethylFile is a function for reading DNA methylation beta values files and use them as new data for prediction by every model. The input for this function should be either CSV or TSV file format. Please uncomment the following lines and run the function.
 
-Usage
+`Usage`
+
+```r{}
 set.seed(1234)
 fac <- ncol(Data1)
 NewData <- sample(data.frame(t(Data1[,-fac])),10)
@@ -14,12 +16,14 @@ NewData <- cbind(rownames(NewData), NewData)
 colnames(NewData)[1] <- "ID"
 write.csv(NewData, "NewData.csv", quote = FALSE, row.names = FALSE)
 methyl <- ReadMethylFile(File = "NewData.csv")
+```
 This function has only one argument, the File. The first column of the File is the CpG methylation probe that starts with cg characters and is followed by a number (e.g., cg100091). Other columns are samples with methylation beta values. All columns in the data frame should have a name.
 
-Box plot
+`Box plot`
+
 The BoxPlot function draws a box plot out of DNA methylation beta values or other data frames.
 
-Usage
+`Usage`
 
 data <- Data2[1:20,]
 data <- cbind(rownames(data), data)
