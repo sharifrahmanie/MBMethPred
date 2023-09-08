@@ -2,6 +2,9 @@
 
 MBMethPred is a user-friendly package developed for the accurate prediction of medulloblastoma subgroups using DNA methylation beta values. It incorporates seven machine learning models, including Random Forest, K-Nearest Neighbors, Support Vector Machine, Linear Discriminant Analysis, Extreme Gradient Boosting, Naive Bayes, and a neural network model specifically designed for the complexities of medulloblastoma data. The package provides streamlined workflows for data preprocessing, feature selection, model training, cross-validation, and prediction. This vignette offers detailed explanations, examples, and resulting outputs for each functionality. The MBMethPred package was tested on an Ubuntu machine equipped with an Intel Core i5-6200U processor and 16GB RAM.
 
+## Citation 
+Sharif Rahmani E, Lawarde A, Lingasamy P, Moreno SV, Salumets A and Modhukur V (2023), MBMethPred: a computational framework for the accurate classiﬁcation of childhood medulloblastoma subgroups using data integration and AI-based approaches. Front. Genet. 14:1233657. doi: 10.3389/fgene.2023.1233657
+
 ## Installation
 ```r{}
 install.packages("MBMethPred")
