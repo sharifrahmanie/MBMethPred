@@ -74,16 +74,16 @@ rgl.snapshot('tsne3d.png', fmt = 'png')
 
 ## Input file for similarity network fusion (SNF)
 
-Using `ReadSNFData` function, one can read files (any matrices with CSV or TSV format) and feed them into the similarity network fusion (SNF) function (from the SNFtools package). Please uncomment the following lines and run the function.
+Using `ReadSNFData` function, one can read files (any matrices with CSV or TSV format) and feed them into the similarity network fusion (SNF) function (from the SNFtools package).
 
 ### Usage
 
 ```{r}
-# data(Data2) # Gene expression 
-# Data2 <- cbind(rownames(Data2), Data2)
-# colnames(Data2)[1] <- "ID"
-# write.csv(Data2, "Data2.csv", row.names = FALSE)
-# Data2 <- ReadSNFData(File = "Data2.csv")
+data(Data2) # Gene expression 
+Data2 <- cbind(rownames(Data2), Data2)
+colnames(Data2)[1] <- "ID"
+write.csv(Data2, "Data2.csv", row.names = FALSE)
+Data2 <- ReadSNFData(File = "Data2.csv")
 ```
 
 
