@@ -24,7 +24,7 @@ The `ReadMethylFile` is a function for reading DNA methylation beta values files
 ### Usage
 ```{r}
 set.seed(1234)
- fac <- ncol(Data1)
+fac <- ncol(Data1)
 NewData <- sample(data.frame(t(Data1[,-fac])),10)
 NewData <- cbind(rownames(NewData), NewData)
 colnames(NewData)[1] <- "ID"
@@ -147,7 +147,7 @@ This function has the following arguments:
 * `SplitRatio`    Train and test split ratio. A value greater or equal to zero and less than one.
 * `CV`    The number of folds for cross-validation. It should be greater than one.
 * `NCores`    The number of cores for parallel computing.
-*  `NewData`    A methylation beta values input from the ReadMethylFile function. 
+* `NewData`    A methylation beta values input from the ReadMethylFile function. 
 
 
 ## K nearest neighbor model
@@ -177,7 +177,7 @@ This function has the following arguments:
 * `CV`    The number of folds for cross-validation. It should be greater than one.
 * `K`   The number of nearest neighbors.
 * `NCores`    The number of cores for parallel computing.
-*  `NewData`    A methylation beta values input from the ReadMethylFile function.
+* `NewData`    A methylation beta values input from the ReadMethylFile function.
 
 ## Random forest model
 The `RandomForestModel` is a function to train a random forest model to classify medulloblastoma subgroups using DNA methylation beta values.
@@ -208,7 +208,7 @@ This function has the following arguments:
 * `CV`    The number of folds for cross-validation. It should be greater than one.
 * `NTree`   The number of trees to be grown.
 * `NCores`    The number of cores for parallel computing.
-*  `NewData`  A methylation beta values input from the ReadMethylFile function.  
+* `NewData`  A methylation beta values input from the ReadMethylFile function.  
 
 ## XGBoost model
 The `XGBoostModel` is a A function to train an XGBoost model to classify medulloblastoma subgroups using DNA methylation beta values.
@@ -235,7 +235,7 @@ This function has the following arguments:
 * `SplitRatio`    Train and test split ratio. A value greater or equal to zero and less than one.
 * `CV`    The number of folds for cross-validation. It should be greater than one.
 * `NCores`    The number of cores for parallel computing.
-*  `NewData`  A methylation beta values input from the ReadMethylFile function.  
+* `NewData`  A methylation beta values input from the ReadMethylFile function.  
 
 
 ## Linear discriminant analysis model
@@ -263,7 +263,7 @@ This function has the following arguments:
 * `SplitRatio`    Train and test split ratio. A value greater or equal to zero and less than one.
 * `CV`    The number of folds for cross-validation. It should be greater than one.
 * `NCores`    The number of cores for parallel computing.
-*  `NewData`  A methylation beta values input from the ReadMethylFile function.  
+* `NewData`  A methylation beta values input from the ReadMethylFile function.  
 
 ## Naive bayes model
 The `NaiveBayesModel` is a function to train a Naive Bayes model to classify medulloblastoma subgroups using DNA methylation beta values.
@@ -292,11 +292,11 @@ This function has the following arguments:
 * `CV`    The number of folds for cross-validation. It should be greater than one.
 * `Threshold`   The threshold for deciding class probability. A value greater or equal to zero and less than one.
 * `NCores`    The number of cores for parallel computing.
-*  `NewData`  A methylation beta values input from the ReadMethylFile function.  
+* `NewData`  A methylation beta values input from the ReadMethylFile function.  
 
 ## Artificial neural network model
 
-The `NeuralNetworkModel` is a function to train an artificial neural network model to classify medulloblastoma subgroups using DNA methylation beta values. Please uncomment the following lines and run the function. If it is the first time you run this function, set the InstallTensorFlow parameter to TRUE. It will automatically install the Python and TensorFlow library (version 2.10-cpu) in a virtual environment then set the parameter to FALSE. 
+The `NeuralNetworkModel` is a function to train an artificial neural network model to classify medulloblastoma subgroups using DNA methylation beta values. Please uncomment the following lines and run the function. If it is the first time you run this function, set the InstallTensorFlow parameter to TRUE. It will automatically install the Python and TensorFlow library (version 2.10-cpu) in a virtual environment and then set the parameter to FALSE. 
 
 ### Usage
 
