@@ -18,7 +18,7 @@ require(MBMethPred)
 
 ## Input file for prediction
 
-The `ReadMethylFile` is a function for reading DNA methylation beta values files and use them as new data for prediction by every model. The input for this function should be either CSV or TSV file format. Please uncomment the following lines and run the function.
+The `ReadMethylFile` is a function for reading DNA methylation beta values files and using them as new data for prediction by every model. The input for this function should be either CSV or TSV file format.
  
 
 ### Usage
@@ -48,13 +48,13 @@ colnames(data)[1] <- "ID"
 BoxPlot(File = data, Projname = NULL)
 ```
 
-This function has two arguments as follow:
+This function has two arguments as follows:
 
 * `File`    A data frame with the first column as ID. 
 * `Projname` A string to name the plot.
 
 ## t-SNE 3D plot
-The `TSNEPlot` function draws a 3D t-SNE plot for DNA methylation dataset using the K-means clustering technique. This function has two arguments `File` (any matrices) and `NCluster` ( number of clusters for K-Means clustering). 
+The `TSNEPlot` function draws a 3D t-SNE plot for the DNA methylation dataset using the K-means clustering technique. This function has two arguments `File` (any matrices) and `NCluster` ( number of clusters for K-Means clustering). 
 
 ### Usage 
 
@@ -89,7 +89,7 @@ Data2 <- ReadSNFData(File = "Data2.csv")
 
 ## Similarity network fusion (SNF)
 
-The `SimilarityNetworkFusion` is a function to perform SNF function (from SNFtool package) and output clusters.
+The `SimilarityNetworkFusion` is a function to perform the SNF function (from the SNFtool package) and output clusters.
 
 ### Usage 
 
@@ -107,7 +107,7 @@ snf <- SimilarityNetworkFusion(Files = list(Data2, Data3),
 snf
 ```
 
-This function has several arguments as follow:
+This function has several arguments as follows:
 
 * `Files`   A list of data frames created using the ReadSNFData function.
 * `NNeighbors`    The number of nearest neighbors.
@@ -211,7 +211,7 @@ This function has the following arguments:
 * `NewData`  A methylation beta values input from the ReadMethylFile function.  
 
 ## XGBoost model
-The `XGBoostModel` is a A function to train an XGBoost model to classify medulloblastoma subgroups using DNA methylation beta values.
+The `XGBoostModel` is a function to train an XGBoost model to classify medulloblastoma subgroups using DNA methylation beta values.
 
 ### Usage
 
@@ -265,7 +265,7 @@ This function has the following arguments:
 * `NCores`    The number of cores for parallel computing.
 * `NewData`  A methylation beta values input from the ReadMethylFile function.  
 
-## Naive bayes model
+## Naive Bayes model
 The `NaiveBayesModel` is a function to train a Naive Bayes model to classify medulloblastoma subgroups using DNA methylation beta values.
 
 ### Usage
@@ -296,7 +296,7 @@ This function has the following arguments:
 
 ## Artificial neural network model
 
-The `NeuralNetworkModel` is a function to train an artificial neural network model to classify medulloblastoma subgroups using DNA methylation beta values. Please uncomment the following lines and run the function. If it is the first time you run this function, set the InstallTensorFlow parameter to TRUE. It will automatically install the Python and TensorFlow library (version 2.10-cpu) in a virtual environment and then set the parameter to FALSE. 
+The `NeuralNetworkModel` is a function to train an artificial neural network model to classify medulloblastoma subgroups using DNA methylation beta values. Please uncomment the following lines and run the function. If it is the first time you run this function, set the InstallTensorFlow parameter to TRUE. It will automatically install the Python and TensorFlow library (version 2.10-CPU) in a virtual environment and then set the parameter to FALSE. 
 
 ### Usage
 
@@ -316,4 +316,4 @@ This function has the following arguments:
 
 * `Epochs`    The number of epochs.
 * `NewData`   A methylation beta values input from the ReadMethylFile function.
-* `InstallTensorFlow`   Logical. Running this function for the first time, you need to install TensorFlow library (V 2.10-cpu). Default is TRUE.
+* `InstallTensorFlow`   Logical. To run this function for the first time, you need to install the TensorFlow library (V 2.10-cpu). The default is TRUE.
