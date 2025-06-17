@@ -1,9 +1,8 @@
-test_that("MakeBoxPlot returns correct type", {
-  data <- Data2[1:20,]
-  data <- data %>%
-    t() %>%
-    data.frame()
-  data <- cbind(rownames(data), data)
-  colnames(data)[1] <- "ID"
-  expect_type(BoxPlot(File = data), "list")
+test_that("BoxPlot() returns a ggplot object", {
+  data <- Data2[1:20, ] |>
+    t() |>
+    as.data.frame()
+  data <- cbind(ID = rownames(data), data)
+  p <- BoxPlot(File = data)
+  expect_true(ggplot2::is_ggplot(p))
 })
